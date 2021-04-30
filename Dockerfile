@@ -3,6 +3,7 @@ RUN apk --no-cache --no-progress add --virtual build-deps build-base git linux-p
 RUN git clone https://github.com/gogs/gogs gogs
 RUN cd gogs && go build -tags "sqlite pam cert" -o gogs
 
+FROM alpine:latest
 ADD https://github.com/tianon/gosu/releases/download/1.12/gosu-arm64 /usr/sbin/gosu
 RUN chmod +x /usr/sbin/gosu \
   && echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories \
