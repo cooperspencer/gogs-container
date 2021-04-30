@@ -4,7 +4,8 @@ RUN git clone https://github.com/gogs/gogs gogs
 RUN cd gogs && go build -tags "sqlite pam cert" -o gogs
 
 FROM alpine:latest
-ADD https://github.com/tianon/gosu/releases/download/1.12/gosu-arm64 /usr/sbin/gosu
+ARG ARCH=amd64
+ADD https://github.com/tianon/gosu/releases/download/1.12/gosu-${ARCH} /usr/sbin/gosu
 RUN chmod +x /usr/sbin/gosu \
   && echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories \
   && apk --no-cache --no-progress add \
