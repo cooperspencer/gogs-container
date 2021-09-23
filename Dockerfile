@@ -1,4 +1,4 @@
-FROM golang:1.17-alpine AS binarybuilder
+FROM golang:1.17.1-alpine AS binarybuilder
 RUN apk --no-cache --no-progress add --virtual build-deps build-base git linux-pam-dev
 RUN git clone https://github.com/gogs/gogs gogs
 RUN cd gogs && go build -tags "sqlite pam cert" -o gogs
